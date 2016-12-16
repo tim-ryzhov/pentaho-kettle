@@ -266,6 +266,11 @@ public class CsvInputData extends BaseStepData implements StepDataInterface {
       length = 0;
     }
 
+    //PDI-14650 Restore length for multichar delimiter
+    if (enclosureFound && delimiter.length / encodingType.getLength() > 1) {
+      length += delimiter.length / encodingType.getLength() - 1;
+    }
+
     byte[] field = new byte[length];
     System.arraycopy( byteBuffer, fieldStart, field, 0, length );
 

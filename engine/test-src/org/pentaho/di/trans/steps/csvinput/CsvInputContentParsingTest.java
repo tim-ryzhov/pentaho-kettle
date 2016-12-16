@@ -52,6 +52,19 @@ public class CsvInputContentParsingTest extends BaseCsvParsingTest {
   }
 
   @Test
+  public void testMultiCharDelimOptions() throws Exception {
+    meta.setDelimiter("|||");
+    init( "multi_delim.csv" );
+
+    setFields( new TextFileInputField(), new TextFileInputField(), new TextFileInputField() );
+
+    process();
+
+    check( new Object[][] { { "first", "1", "1.1" }, { "second", "2", "2.2" }, { "third", "3", "3.3" }, {
+            "\u043d\u0435-\u043b\u0430\u0446\u0456\u043d\u043a\u0430(non-latin)", "4", "4" } } );
+  }
+
+  @Test
   public void testNoHeaderOptions() throws Exception {
     meta.setHeaderPresent( false );
     init( "default.csv" );

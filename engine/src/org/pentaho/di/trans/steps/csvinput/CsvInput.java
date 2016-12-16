@@ -506,7 +506,7 @@ public class CsvInput extends BaseStep implements StepInterface {
         boolean ignoreEnclosuresInField = ignoreEnclosures;
         while ( !delimiterFound && !newLineFound && !endOfBuffer ) {
           // If we find the first char, we might find others as well ;-)
-          // Single byte delimiters only for now.
+          // Single byte delimiters only for now. UPD 12/16/2016 PDI-14650 Not only single byte delims.
           //
           if ( data.delimiterFound() ) {
             delimiterFound = true;
